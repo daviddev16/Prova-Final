@@ -9,7 +9,7 @@ public class TipHandler extends MouseAdapter {
 
 	private volatile JLabel tipLabel;
 	private volatile String text;
-	
+
 	public TipHandler(JLabel tipLabel, String text) {
 		this.tipLabel = tipLabel;
 		this.text = text;
@@ -21,7 +21,9 @@ public class TipHandler extends MouseAdapter {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		tipLabel.setText(text);
+		if(tipLabel != null) {
+			tipLabel.setText(text);
+		}
 	}
 
 }

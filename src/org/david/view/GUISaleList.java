@@ -13,14 +13,14 @@ import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.FontUIResource;
 
-import org.david.controller.ApplicationManager;
+import org.david.controller.RepositoryManager;
 import org.david.model.Sale;
 
 public class GUISaleList extends JList<Integer> {
 
 	private static final long serialVersionUID = -4973167272491005453L;
 
-	public GUISaleList(ApplicationManager manager, boolean load) {
+	public GUISaleList(RepositoryManager repositoryManager, boolean load) {
 		super();
 		setOpaque(false);
 		setModel(new DefaultListModel<Integer>());
@@ -28,11 +28,11 @@ public class GUISaleList extends JList<Integer> {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index,
 					boolean isSelected, boolean cellHasFocus) {
-				if (manager == null) {
+				if (repositoryManager == null) {
 					return new JLabel();
 				}
-				LocalDate data = manager.getSaleRepository().get(value, Sale::getDate);
-				double totalPrice = manager.getSaleRepository().get(value, Sale::getSaleTotalPrice);
+				LocalDate data = repositoryManager.getSaleRepository().get(value, Sale::getDate);
+				double totalPrice = repositoryManager.getSaleRepository().get(value, Sale::getSaleTotalPrice);
 
 				JLabel label = new JLabel();
 				label.setBorder(new EmptyBorder(0, 5, 0, 0));
@@ -54,7 +54,7 @@ public class GUISaleList extends JList<Integer> {
 			}
 		});
 		if (load) {
-			manager.getProductRepository().stream().forEach(product -> {
+			repositoryManager.getProductRepository().stream().forEach(product -> {
 				((DefaultListModel<Integer>) getModel()).addElement(product.getUniqueId());
 			});
 		}

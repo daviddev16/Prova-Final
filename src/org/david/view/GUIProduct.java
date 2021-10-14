@@ -17,7 +17,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import org.david.controller.ApplicationManager;
+import org.david.controller.RepositoryManager;
 import org.david.model.Product;
 import org.david.model.impl.SalableProduct;
 
@@ -27,7 +27,7 @@ public class GUIProduct extends JDialog {
 
 	private SalableProduct product;
 
-	private GUIProduct(boolean editMode, final ApplicationManager manager, final SalableProduct product) {
+	private GUIProduct(boolean editMode, final RepositoryManager repositoryManager, final SalableProduct product) {
 
 		JTextField tfName = new JTextField();
 
@@ -83,7 +83,7 @@ public class GUIProduct extends JDialog {
 		sQuantity.setBounds(10, 220, 295, 20);
 		getContentPane().add(sQuantity);
 
-		JLabel lblId = new JLabel("ID: " + ((editMode) ? product.getUniqueId() : manager.nextProductUniqueID()));
+		JLabel lblId = new JLabel("ID: " + ((editMode) ? product.getUniqueId() : repositoryManager.nextProductUniqueID()));
 		lblId.setForeground(SystemColor.controlShadow);
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setBounds(0, 65, 315, 14);
@@ -107,7 +107,7 @@ public class GUIProduct extends JDialog {
 					return;
 				}
 
-				GUIProduct.this.product = new Product(manager.nextProductUniqueID(), tfName.getText(),
+				GUIProduct.this.product = new Product(repositoryManager.nextProductUniqueID(), tfName.getText(),
 						((Double) sPrice.getValue()).doubleValue());
 
 				GUIProduct.this.product.getStock().set(((Integer) sQuantity.getValue()).intValue());
@@ -134,12 +134,12 @@ public class GUIProduct extends JDialog {
 		setVisible(true);
 	}
 
-	public static void edit(SalableProduct product, ApplicationManager manager) {
-		new GUIProduct(true, manager, product);
+	public static void edit(SalableProduct product, RepositoryManager repositoryManager) {
+		new GUIProduct(true, repositoryManager, product);
 	}
 
-	public static SalableProduct create(ApplicationManager manager) {
-		return new GUIProduct(false, manager, null).getProduct();
+	public static SalableProduct create(RepositoryManager repositoryManager) {
+		return new GUIProduct(false, repositoryManager, null).getProduct();
 	}
 
 	private JSeparator separator(int x, int y, int width, int height) {

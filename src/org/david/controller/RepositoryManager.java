@@ -4,12 +4,12 @@ import org.david.model.Sale;
 import org.david.model.impl.Repository;
 import org.david.model.impl.SalableProduct;
 
-public final class ApplicationManager {
+public final class RepositoryManager {
 
-	private Repository<SalableProduct> productRepository;
+	private final Repository<SalableProduct> productRepository;
 	private Repository<Sale> saleRepository;
 
-	public ApplicationManager() {
+	public RepositoryManager() {
 		productRepository = new ProductRepository();
 		saleRepository = new SaleRepository();
 	}
@@ -29,6 +29,5 @@ public final class ApplicationManager {
 	public int nextSaleUniqueID() {
 		return getSaleRepository().length() + 1;
 	}
-
 
 }

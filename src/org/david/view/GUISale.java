@@ -16,7 +16,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import org.david.controller.ApplicationManager;
+import org.david.controller.RepositoryManager;
 import org.david.model.Sale;
 import org.david.model.impl.SalableProduct;
 import javax.swing.JScrollPane;
@@ -29,9 +29,9 @@ public class GUISale extends JDialog {
 	private GUIProductList listProdutos;
 	private JLabel textProdutos;
 
-	private GUISale(ApplicationManager manager) {
+	private GUISale(RepositoryManager repositoryManager) {
 
-		sale = new Sale(manager.nextSaleUniqueID(), null);
+		sale = new Sale(repositoryManager.nextSaleUniqueID(), null);
 
 		setModal(true);
 		setResizable(false);
@@ -43,7 +43,7 @@ public class GUISale extends JDialog {
 		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 1, 2, 1, Color.decode("#dedede")));
 		scrollPane.setBounds(10, 11, 148, 239);
 		getContentPane().add(scrollPane);
-		listProdutos = new GUIProductList(manager, true);
+		listProdutos = new GUIProductList(repositoryManager, true);
 		scrollPane.setViewportView(listProdutos);
 
 		JButton btnAdicionarProduto = new JButton("Adicionar na venda ->");
@@ -51,7 +51,7 @@ public class GUISale extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (listProdutos.getSelectedValue() != null) {
-					SalableProduct product = manager.getProductRepository().getElement(listProdutos.getSelectedValue());
+					SalableProduct product = repositoryManager.getProductRepository().getElement(listProdutos.getSelectedValue());
 
 					String amountStringValue = JOptionPane.showInputDialog(null,
 							"Digite a quantidade para venda: (Disponível " + product.getStock().getQuantityInStock() + ")",
@@ -143,7 +143,7 @@ public class GUISale extends JDialog {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<html>");
 		sale.getSaleProducts().forEach(saleProduct -> {
-			buffer.append("Produto= " + saleProduct.getProduct().getName() + ", Qtd= " + saleProduct.getAmount() + "/" + saleProduct.getProduct().getStock().getQuantityInStock())
+			buffer.append("Produto= " + saleProduct.getProduct().getName() + ", Qtd= " + saleProduct.getAmount() + " de " + saleProduct.getProduct().getStock().getQuantityInStock())
 					.append("<br>");
 		});
 		buffer.append("</html>");
@@ -151,8 +151,8 @@ public class GUISale extends JDialog {
 		textProdutos.setText(buffer.toString());
 	}
 
-	public static Sale createASale(ApplicationManager manager) {
-		return new GUISale(manager).getSale();
+	public static Sale createASale(RepositoryManager repositoryManager) {
+		return new GUISale(repositoryManager).getSale();
 	}
 
 	private Sale getSale() {
