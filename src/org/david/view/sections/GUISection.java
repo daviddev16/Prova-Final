@@ -12,32 +12,32 @@ import org.david.miscs.Section;
 
 public abstract class GUISection<R> extends JPanel {
 
-	private static final long serialVersionUID = 3604377381051905696L;
+  private static final long serialVersionUID = 3604377381051905696L;
 
-	private final RepositoryManager repositoryManager;
-	private final R root;
+  private final RepositoryManager repositoryManager;
+  private final R root;
 
-	public GUISection(final RepositoryManager repositoryManager, R root) {
-		this.repositoryManager = repositoryManager;
-		this.root = root;
+  public GUISection(final RepositoryManager repositoryManager, R root) {
+    this.repositoryManager = repositoryManager;
+    this.root = root;
 
-		Section sectionAnn = getClass().getAnnotation(Section.class);
-		String title = (sectionAnn != null) ? sectionAnn.title() : "-";
+    Section sectionAnn = getClass().getAnnotation(Section.class);
+    String title = (sectionAnn != null) ? sectionAnn.title() : "-";
 
-		setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), title, TitledBorder.CENTER, TitledBorder.TOP,
-				null, new Color(192, 192, 192)));
-	}
+    setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), title, TitledBorder.CENTER, TitledBorder.TOP,
+        null, new Color(192, 192, 192)));
+  }
 
-	public abstract void update();
+  public abstract void update();
 
-	public abstract void handleTip(JLabel tipLabel);
+  public abstract void handleTip(JLabel tipLabel);
 
-	public R getRoot() {
-		return root;
-	}
+  public R getRoot() {
+    return root;
+  }
 
-	public RepositoryManager getRepositoryManager() {
-		return this.repositoryManager;
-	}
+  public RepositoryManager getRepositoryManager() {
+    return this.repositoryManager;
+  }
 
 }

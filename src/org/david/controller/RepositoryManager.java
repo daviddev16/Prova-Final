@@ -6,28 +6,28 @@ import org.david.model.impl.SalableProduct;
 
 public final class RepositoryManager {
 
-	private final Repository<SalableProduct> productRepository;
-	private Repository<Sale> saleRepository;
+  private final Repository<SalableProduct> productRepository;
+  private Repository<Sale> saleRepository;
 
-	public RepositoryManager() {
-		productRepository = new ProductRepository();
-		saleRepository = new SaleRepository();
-	}
+  public RepositoryManager() {
+    productRepository = new ProductRepository();
+    saleRepository = new SaleRepository();
+  }
 
-	public SaleRepository getSaleRepository() {
-		return (SaleRepository) saleRepository;
-	}
+  public SaleRepository getSaleRepository() {
+    return (SaleRepository) saleRepository;
+  }
 
-	public ProductRepository getProductRepository() {
-		return (ProductRepository) productRepository;
-	}
+  public ProductRepository getProductRepository() {
+    return (ProductRepository) productRepository;
+  }
 
-	public int nextProductUniqueID() {
-		return getProductRepository().length() + 1;
-	}
+  public int nextProductUniqueID() {
+    return getProductRepository().length() + 1;
+  }
 
-	public int nextSaleUniqueID() {
-		return getSaleRepository().length() + 1;
-	}
+  public int nextSaleUniqueID() {
+    return getSaleRepository().length() + 1;
+  }
 
 }

@@ -16,43 +16,43 @@ import org.david.model.impl.SalableProduct;
 
 public class GUIProductList extends JList<Integer> {
 
-	private static final long serialVersionUID = -4973167272491005453L;
+  private static final long serialVersionUID = -4973167272491005453L;
 
-	public GUIProductList(RepositoryManager repositoryManager, boolean load) {
-		super();
-		setOpaque(false);
-		setModel(new DefaultListModel<Integer>());
-		setCellRenderer(new ListCellRenderer<Integer>() {
-			@Override
-			public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index,
-					boolean isSelected, boolean cellHasFocus) {
+  public GUIProductList(RepositoryManager repositoryManager, boolean load) {
+    super();
+    setOpaque(false);
+    setModel(new DefaultListModel<Integer>());
+    setCellRenderer(new ListCellRenderer<Integer>() {
+      @Override
+      public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index,
+          boolean isSelected, boolean cellHasFocus) {
 
-				String name = repositoryManager.getProductRepository().get(value, SalableProduct::getName);
-				double price = repositoryManager.getProductRepository().get(value, SalableProduct::getPrice);
+        String name = repositoryManager.getProductRepository().get(value, SalableProduct::getName);
+        double price = repositoryManager.getProductRepository().get(value, SalableProduct::getPrice);
 
-				JLabel label = new JLabel();
-				label.setBorder(new EmptyBorder(0, 5, 0, 0));
-				label.setOpaque(isSelected);
-				label.setPreferredSize(new Dimension(100, 45));
-				label.setFont(new FontUIResource("Segoe UI", Font.TRUETYPE_FONT, 12));
-				label.setBackground(Color.MAGENTA.darker());
-				label.setForeground(isSelected ? Color.WHITE : Color.BLACK);
+        JLabel label = new JLabel();
+        label.setBorder(new EmptyBorder(0, 5, 0, 0));
+        label.setOpaque(isSelected);
+        label.setPreferredSize(new Dimension(100, 45));
+        label.setFont(new FontUIResource("Segoe UI", Font.TRUETYPE_FONT, 12));
+        label.setBackground(Color.MAGENTA.darker());
+        label.setForeground(isSelected ? Color.WHITE : Color.BLACK);
 
-				StringBuffer buffer = new StringBuffer();
-				buffer.append("<html>");
-				buffer.append("<b>" + value + "</b> ").append("<u>" + name + "</u>  <br><i>R$ ").append(price + "</i>");
-				buffer.append("</html>");
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("<html>");
+        buffer.append("<b>" + value + "</b> ").append("<u>" + name + "</u>  <br><i>R$ ").append(price + "</i>");
+        buffer.append("</html>");
 
-				label.setText(buffer.toString().replace(".", ","));
+        label.setText(buffer.toString().replace(".", ","));
 
-				return label;
-			}
-		});
-		if (load) {
-			repositoryManager.getProductRepository().stream().forEach(product -> {
-				((DefaultListModel<Integer>) getModel()).addElement(product.getUniqueId());
-			});
-		}
-	}
+        return label;
+      }
+    });
+    if (load) {
+      repositoryManager.getProductRepository().stream().forEach(product -> {
+        ((DefaultListModel<Integer>) getModel()).addElement(product.getUniqueId());
+      });
+    }
+  }
 
 }

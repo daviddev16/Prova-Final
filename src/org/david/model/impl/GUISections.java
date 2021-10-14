@@ -4,10 +4,10 @@ import org.david.view.sections.GUISection;
 
 public interface GUISections {
 
-	public GUISection<?> getHelpSection();
+  public GUISection<?> getHelpSection();
 
-	public GUISection<?> getProductsSection();
+  public GUISection<?> getProductsSection();
 
-	public GUISection<?> getSalesSection();
+  public GUISection<?> getSalesSection();
 
 }

@@ -8,16 +8,16 @@ import javax.swing.JFormattedTextField;
 
 public class GUIDateField extends JFormattedTextField {
 
-	private static final long serialVersionUID = -4070878851012651987L;
+  private static final long serialVersionUID = -4070878851012651987L;
 
-	public GUIDateField(DateTimeFormatter dateFormatter) {
-		super(dateFormatter.toFormat(LocalDate::from));
-		setPreferredSize(new Dimension(100, 26));
-	}
+  public GUIDateField(DateTimeFormatter dateFormatter) {
+    super(dateFormatter.toFormat(LocalDate::from));
+    setPreferredSize(new Dimension(100, 26));
+  }
 
-	@Override
-	public LocalDate getValue() {
-		return (LocalDate) super.getValue();
-	}
+  @Override
+  public LocalDate getValue() {
+    return (LocalDate) super.getValue();
+  }
 
 }
