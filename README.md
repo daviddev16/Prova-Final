@@ -64,6 +64,6 @@ seguinte:
 
 # Link para download
 
-[Link](https://drive.google.com/file/d/1LJwr6a8xbZZrgdrROeiMkxifjEavWQ5_/view?usp=sharing) para baixar o software :)
+[Link](https://github.com/daviddev16/Prova-Final/tree/master/builds) para baixar o software :)
 
 <h4>Obrigado pela atenção !</h4>
