@@ -16,11 +16,11 @@ public abstract class GUISection<R> extends JPanel {
 
 	private final RepositoryManager repositoryManager;
 	private final R root;
-	
+
 	public GUISection(final RepositoryManager repositoryManager, R root) {
 		this.repositoryManager = repositoryManager;
 		this.root = root;
-		
+
 		Section sectionAnn = getClass().getAnnotation(Section.class);
 		String title = (sectionAnn != null) ? sectionAnn.title() : "-";
 
@@ -35,7 +35,7 @@ public abstract class GUISection<R> extends JPanel {
 	public R getRoot() {
 		return root;
 	}
-	
+
 	public RepositoryManager getRepositoryManager() {
 		return this.repositoryManager;
 	}

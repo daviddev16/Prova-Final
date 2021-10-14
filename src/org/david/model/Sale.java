@@ -48,12 +48,12 @@ public final class Sale implements IUnique, Comparable<Sale> {
 	public int getUniqueId() {
 		return uniqueId;
 	}
-	
+
 	@Override
 	public int compareTo(Sale o) {
 		return Integer.compare(getUniqueId(), o.getUniqueId());
 	}
-	
+
 	public static final class SaleProduct {
 
 		private final SalableProduct product;

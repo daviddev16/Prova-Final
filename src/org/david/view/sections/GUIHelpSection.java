@@ -38,7 +38,7 @@ public class GUIHelpSection extends GUISection<GUISections> {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				btnAddons.setEnabled(false);
-				((GUIProductsSection)getRoot().getProductsSection()).addSamples();
+				((GUIProductsSection) getRoot().getProductsSection()).addSamples();
 			}
 		});
 		btnAddons.setBounds(6, 16, 147, 23);

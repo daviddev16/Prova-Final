@@ -11,7 +11,7 @@ public final class ProductRepository extends Repository<SalableProduct> {
 	public double getMinimumPrice() {
 		AtomicReference<Double> currentValue = new AtomicReference<>(Double.MAX_VALUE);
 		stream().forEach(product -> {
-			if(product.getPrice() < currentValue.get()) {
+			if (product.getPrice() < currentValue.get()) {
 				currentValue.set(product.getPrice());
 			}
 		});
@@ -21,7 +21,7 @@ public final class ProductRepository extends Repository<SalableProduct> {
 	public double getMaximumPrice() {
 		AtomicReference<Double> currentValue = new AtomicReference<>(Double.MIN_VALUE);
 		stream().forEach(product -> {
-			if(product.getPrice() > currentValue.get()) {
+			if (product.getPrice() > currentValue.get()) {
 				currentValue.set(product.getPrice());
 			}
 		});

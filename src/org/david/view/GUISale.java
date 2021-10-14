@@ -38,7 +38,7 @@ public class GUISale extends JDialog {
 		setBounds(100, 100, 528, 301);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 1, 2, 1, Color.decode("#dedede")));
 		scrollPane.setBounds(10, 11, 148, 239);
@@ -101,7 +101,7 @@ public class GUISale extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if(tfData.getValue() == null) {
+				if (tfData.getValue() == null) {
 					JOptionPane.showMessageDialog(null, "Data inválida.");
 					return;
 				}
@@ -143,8 +143,8 @@ public class GUISale extends JDialog {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("<html>");
 		sale.getSaleProducts().forEach(saleProduct -> {
-			buffer.append("Produto= " + saleProduct.getProduct().getName() + ", Qtd= " + saleProduct.getAmount() + " de " + saleProduct.getProduct().getStock().getQuantityInStock())
-					.append("<br>");
+			buffer.append("Produto= " + saleProduct.getProduct().getName() + ", Qtd= " + saleProduct.getAmount() + " de "
+					+ saleProduct.getProduct().getStock().getQuantityInStock()).append("<br>");
 		});
 		buffer.append("</html>");
 		buffer.trimToSize();

@@ -4,11 +4,11 @@ import org.jetbrains.annotations.NotNull;
 
 public interface ISalable {
 
-  void sell(@NotNull ISellResult doneEvent);
+	void sell(@NotNull ISellResult doneEvent);
 
-  @NotNull ItemStock getStock();
+	@NotNull ItemStock getStock();
 
-  boolean canBeSold();
+	boolean canBeSold();
 
 }
 

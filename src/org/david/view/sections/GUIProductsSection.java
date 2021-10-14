@@ -61,7 +61,8 @@ public class GUIProductsSection extends GUISection<GUISections> {
 
 		btnRemoverProduto.addActionListener((event) -> {
 			if (listProdutos.getSelectedValue() != null) {
-				removeProduct((Product) getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()));
+				removeProduct(
+						(Product) getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()));
 			}
 		});
 		btnRemoverProduto.setOpaque(false);
@@ -69,7 +70,8 @@ public class GUIProductsSection extends GUISection<GUISections> {
 
 		btnEditarProduto.addActionListener((event) -> {
 			if (listProdutos.getSelectedValue() != null) {
-				editProduct((Product) getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()));
+				editProduct(
+						(Product) getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()));
 			}
 		});
 		btnEditarProduto.setEnabled(false);
@@ -92,42 +94,35 @@ public class GUIProductsSection extends GUISection<GUISections> {
 
 		GroupLayout groupLayout = new GroupLayout(this);
 
-		groupLayout.setHorizontalGroup(
+		groupLayout
+		.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(10)
-						.addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-						.addGap(10)
+				.addGroup(groupLayout.createSequentialGroup().addGap(10)
+						.addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(10)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblProdutosInfo, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-										.addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+								.addGroup(Alignment.TRAILING,
+										groupLayout.createSequentialGroup()
+										.addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 82,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(2))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-										.addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+								.addGroup(Alignment.TRAILING,
+										groupLayout.createSequentialGroup()
+										.addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 82,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(2))
 								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 										.addComponent(btnRemoverProduto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 										.addGap(2)))
-						.addGap(10))
-				);
-		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(21)
-						.addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-						.addGap(11))
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(22)
-						.addComponent(lblProdutosInfo, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-						.addGap(11)
-						.addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addGap(6)
-						.addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addGap(5)
-						.addComponent(btnRemoverProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addGap(11))
-				);
+						.addGap(10)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(21)
+						.addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE).addGap(11))
+				.addGroup(groupLayout.createSequentialGroup().addGap(22)
+						.addComponent(lblProdutosInfo, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE).addGap(11)
+						.addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addGap(6)
+						.addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addGap(5)
+						.addComponent(btnRemoverProduto, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE).addGap(11)));
 
 		setLayout(groupLayout);
 	}
@@ -147,7 +142,6 @@ public class GUIProductsSection extends GUISection<GUISections> {
 		lblProdutosInfo.addMouseListener(new TipHandler(tipLabel, "Informações de estoque e preços."));
 	}
 
-
 	public void addProduct(Product product) {
 		getRepositoryManager().getProductRepository().add(product);
 		((DefaultListModel<Integer>) listProdutos.getModel()).addElement(product.getUniqueId());
@@ -164,9 +158,12 @@ public class GUIProductsSection extends GUISection<GUISections> {
 		StringBuffer buffer = new StringBuffer();
 
 		buffer.append("<html>");
-		buffer.append("Preço mínimo: <br>R$ " + getRepositoryManager().getProductRepository().getMinimumPrice()).append("<br><br>");
-		buffer.append("Preço máximo: <br>R$ " + getRepositoryManager().getProductRepository().getMaximumPrice()).append("<br><br>");
-		buffer.append("Total em estoque: <br>" + getRepositoryManager().getProductRepository().getTotalStockAmount() + " Produtos")
+		buffer.append("Preço mínimo: <br>R$ " + getRepositoryManager().getProductRepository().getMinimumPrice())
+		.append("<br><br>");
+		buffer.append("Preço máximo: <br>R$ " + getRepositoryManager().getProductRepository().getMaximumPrice())
+		.append("<br><br>");
+		buffer.append(
+				"Total em estoque: <br>" + getRepositoryManager().getProductRepository().getTotalStockAmount() + " Produtos")
 		.append("<br><br>");
 
 		buffer.append("<i>---------------------------</i><br><br>");
@@ -205,9 +202,9 @@ public class GUIProductsSection extends GUISection<GUISections> {
 	}
 
 	public void editProduct(Product product) {
-		GUIProduct.edit(getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()), getRepositoryManager());
+		GUIProduct.edit(getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()),
+				getRepositoryManager());
 		update();
 	}
-
 
 }
