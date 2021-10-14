@@ -63,7 +63,6 @@ public class ProductBuilderDialog extends JDialog {
     }
 
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    setAlwaysOnTop(true);
     setResizable(false);
     setBounds(100, 100, 331, 338);
     setLocationRelativeTo(null);
@@ -109,6 +108,11 @@ public class ProductBuilderDialog extends JDialog {
 
         if (tfName.getText().isEmpty()) {
           JOptionPane.showMessageDialog(null, "Nome inválido.");
+          return;
+        }
+        
+        if(repositoryManager.getProductRepository().contains(tfName.getText())) {
+          JOptionPane.showMessageDialog(null, "Esse produto já existe.");
           return;
         }
 

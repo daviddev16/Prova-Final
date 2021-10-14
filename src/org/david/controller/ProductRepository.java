@@ -45,4 +45,8 @@ public final class ProductRepository extends Repository<SalableProduct> {
     return stockListener;
   }
 
+  public boolean contains(String text) {
+    return stream().anyMatch(product -> product.getName().equalsIgnoreCase(text.trim()));
+  }
+
 }
