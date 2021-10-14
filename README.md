@@ -64,6 +64,6 @@ seguinte:
 
 # Link para download
 
-[Link](https://github.com/daviddev16/Prova-Final/tree/master/builds) para baixar o software :)
+[Link](https://github.com/daviddev16/Prova-Final/tree/master/builds) para baixar o software _(prova-final-1.1.jar)_
 
-<h4>Obrigado pela atenção !</h4>
+<h4>Obrigado pela atenção :)</h4>
