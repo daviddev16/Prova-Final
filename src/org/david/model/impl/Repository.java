@@ -25,7 +25,7 @@ public abstract class Repository<E extends IUnique> {
     elements.remove(product);
   }
 
-  public Stream<E> stream(){
+  public Stream<E> stream() {
     return elements.stream();
   }
 
@@ -34,18 +34,15 @@ public abstract class Repository<E extends IUnique> {
   }
 
   public E getElement(int uniqueId) {
-    return elements.stream().filter(e -> e.getUniqueId() == uniqueId)
-        .findFirst().orElseGet(null);
+    return elements.stream().filter(e -> e.getUniqueId() == uniqueId).findFirst().orElseGet(null);
   }
 
   @Nullable
   public <R> R get(int uniqueId, @NotNull Function<E, R> func) {
 
-    Optional<E> optProduct = elements.stream()
-        .filter(e -> e.getUniqueId() == uniqueId)
-        .findAny();
+    Optional<E> optProduct = elements.stream().filter(e -> e.getUniqueId() == uniqueId).findAny();
 
-    if(optProduct.isPresent())
+    if (optProduct.isPresent())
       return func.apply(optProduct.get());
 
     return null;

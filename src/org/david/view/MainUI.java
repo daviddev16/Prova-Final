@@ -1,8 +1,10 @@
 package org.david.view;
 
 import java.awt.Color;
-import java.awt.*;
+import java.awt.Dimension;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,9 +17,6 @@ import org.david.view.sections.GUIHelpSection;
 import org.david.view.sections.GUIProductsSection;
 import org.david.view.sections.GUISalesSection;
 import org.david.view.sections.GUISection;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 public class MainUI extends JFrame implements GUISections {
 

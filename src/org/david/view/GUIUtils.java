@@ -6,5 +6,4 @@ public class GUIUtils {
 
   public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-
 }

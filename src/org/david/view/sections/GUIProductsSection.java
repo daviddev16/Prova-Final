@@ -6,11 +6,11 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.GroupLayout.Alignment;
 
 import org.david.controller.RepositoryManager;
 import org.david.miscs.Section;
@@ -95,26 +95,26 @@ public class GUIProductsSection extends GUISection<GUISections> {
     GroupLayout groupLayout = new GroupLayout(this);
 
     groupLayout
-    .setHorizontalGroup(
-        groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(groupLayout.createSequentialGroup().addGap(10)
-            .addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(10)
-            .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                .addComponent(lblProdutosInfo, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGroup(Alignment.TRAILING,
-                    groupLayout.createSequentialGroup()
-                    .addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 82,
-                        GroupLayout.PREFERRED_SIZE)
-                    .addGap(2))
-                .addGroup(Alignment.TRAILING,
-                    groupLayout.createSequentialGroup()
-                    .addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 82,
-                        GroupLayout.PREFERRED_SIZE)
-                    .addGap(2))
-                .addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-                    .addComponent(btnRemoverProduto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-                    .addGap(2)))
-            .addGap(10)));
+        .setHorizontalGroup(
+            groupLayout.createParallelGroup(Alignment.LEADING)
+                .addGroup(groupLayout.createSequentialGroup().addGap(10)
+                    .addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(10)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                        .addComponent(lblProdutosInfo, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                        .addGroup(Alignment.TRAILING,
+                            groupLayout.createSequentialGroup()
+                                .addComponent(btnAdicionarProduto, GroupLayout.PREFERRED_SIZE, 82,
+                                    GroupLayout.PREFERRED_SIZE)
+                                .addGap(2))
+                        .addGroup(Alignment.TRAILING,
+                            groupLayout.createSequentialGroup()
+                                .addComponent(btnEditarProduto, GroupLayout.PREFERRED_SIZE, 82,
+                                    GroupLayout.PREFERRED_SIZE)
+                                .addGap(2))
+                        .addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+                            .addComponent(btnRemoverProduto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+                            .addGap(2)))
+                    .addGap(10)));
     groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         .addGroup(groupLayout.createSequentialGroup().addGap(21)
             .addComponent(scrollPaneProdutos, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE).addGap(11))
@@ -159,12 +159,12 @@ public class GUIProductsSection extends GUISection<GUISections> {
 
     buffer.append("<html>");
     buffer.append("Preço mínimo: <br>R$ " + getRepositoryManager().getProductRepository().getMinimumPrice())
-    .append("<br><br>");
+        .append("<br><br>");
     buffer.append("Preço máximo: <br>R$ " + getRepositoryManager().getProductRepository().getMaximumPrice())
-    .append("<br><br>");
+        .append("<br><br>");
     buffer.append(
         "Total em estoque: <br>" + getRepositoryManager().getProductRepository().getTotalStockAmount() + " Produtos")
-    .append("<br><br>");
+        .append("<br><br>");
 
     buffer.append("<i>---------------------------</i><br><br>");
 

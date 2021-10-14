@@ -21,7 +21,7 @@ public class TipHandler extends MouseAdapter {
 
   @Override
   public void mouseEntered(MouseEvent e) {
-    if(tipLabel != null) {
+    if (tipLabel != null) {
       tipLabel.setText(text);
     }
   }

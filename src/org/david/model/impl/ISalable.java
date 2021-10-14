@@ -6,10 +6,9 @@ public interface ISalable {
 
   void sell(@NotNull ISellResult doneEvent);
 
-  @NotNull ItemStock getStock();
+  @NotNull
+  ItemStock getStock();
 
   boolean canBeSold();
 
 }
-
-

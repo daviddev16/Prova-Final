@@ -21,7 +21,7 @@ public final class Sale implements IUnique, Comparable<Sale> {
 
   public double getSaleTotalPrice() {
     double totalPrice = 0;
-    for(SaleProduct saleProduct : getSaleProducts()) {
+    for (SaleProduct saleProduct : getSaleProducts()) {
       totalPrice += saleProduct.getAmount() * saleProduct.getProduct().getPrice();
     }
     return totalPrice;

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -19,7 +20,6 @@ import javax.swing.border.LineBorder;
 import org.david.controller.RepositoryManager;
 import org.david.model.Sale;
 import org.david.model.impl.SalableProduct;
-import javax.swing.JScrollPane;
 
 public class GUISale extends JDialog {
 
