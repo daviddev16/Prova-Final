@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class Repository<E extends IUnique> {
+public abstract class Repository<E extends Comparable<E> & IUnique> {
 
   private Set<E> elements;
 
@@ -33,8 +33,12 @@ public abstract class Repository<E extends IUnique> {
     return elements.size();
   }
 
+  public boolean contains(int id) {
+    return stream().anyMatch(e -> e.getUniqueId() == id);
+  }
+
   public E getElement(int uniqueId) {
-    return elements.stream().filter(e -> e.getUniqueId() == uniqueId).findFirst().orElseGet(null);
+    return stream().filter(e -> e.getUniqueId() == uniqueId).findFirst().orElseGet(null);
   }
 
   @Nullable

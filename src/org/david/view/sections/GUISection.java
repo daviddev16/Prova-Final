@@ -8,7 +8,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import org.david.controller.RepositoryManager;
-import org.david.miscs.Section;
+import org.david.view.miscs.Section;
 
 public abstract class GUISection<R> extends JPanel {
 

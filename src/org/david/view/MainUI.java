@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import org.david.controller.RepositoryManager;
-import org.david.model.impl.GUISections;
+import org.david.view.miscs.TipHandler;
 import org.david.view.sections.GUIHelpSection;
 import org.david.view.sections.GUIProductsSection;
 import org.david.view.sections.GUISalesSection;
@@ -24,12 +24,12 @@ public class MainUI extends JFrame implements GUISections {
 
   private final RepositoryManager repositoryManager = new RepositoryManager();
 
-  private final JPanel contentPane = new JPanel(true);
-
   private JLabel tip;
-  GUISection<GUISections> helpSection;
-  GUISection<GUISections> salesSection;
-  GUISection<GUISections> productsSection;
+  private final GUISection<GUISections> helpSection;
+  private final GUISection<GUISections> salesSection;
+  private final GUISection<GUISections> productsSection;
+  
+  private final JPanel contentPane = new JPanel(true);
 
   public MainUI() {
 
@@ -42,16 +42,16 @@ public class MainUI extends JFrame implements GUISections {
     tip = new JLabel();
 
     helpSection = new GUIHelpSection(repositoryManager, this);
-    helpSection.handleTip(tip);
     salesSection = new GUISalesSection(repositoryManager, this);
-    salesSection.handleTip(tip);
     productsSection = new GUIProductsSection(repositoryManager, this);
+    
+    salesSection.handleTip(tip);
+    helpSection.handleTip(tip);
     productsSection.handleTip(tip);
 
     contentPane.setBorder(null);
     setContentPane(contentPane);
 
-    tip.setText("É possível aumentar o tamanho do programa");
     tip.setHorizontalAlignment(SwingConstants.CENTER);
     tip.setForeground(Color.GRAY);
 
@@ -75,7 +75,7 @@ public class MainUI extends JFrame implements GUISections {
 
     contentPane.setLayout(gl_contentPane);
 
-    addMouseListener(new TipHandler(tip, "É possível aumentar o tamanho do programa."));
+    addMouseListener(new TipHandler(tip, "Ã‰ possÃ­vel aumentar o tamanho do programa."));
     setVisible(true);
 
   }
@@ -84,12 +84,10 @@ public class MainUI extends JFrame implements GUISections {
   public GUISection<GUISections> getHelpSection() {
     return helpSection;
   }
-
   @Override
   public GUISection<GUISections> getProductsSection() {
     return productsSection;
   }
-
   @Override
   public GUISection<GUISections> getSalesSection() {
     return salesSection;

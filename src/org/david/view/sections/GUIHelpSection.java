@@ -11,9 +11,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import org.david.controller.RepositoryManager;
-import org.david.miscs.Section;
-import org.david.model.impl.GUISections;
-import org.david.view.TipHandler;
+import org.david.view.GUISections;
+import org.david.view.miscs.Section;
+import org.david.view.miscs.TipHandler;
 
 @Section(title = "Ajuda")
 public class GUIHelpSection extends GUISection<GUISections> {
@@ -25,7 +25,7 @@ public class GUIHelpSection extends GUISection<GUISections> {
   public GUIHelpSection(RepositoryManager repositoryManager, GUISections root) {
     super(repositoryManager, root);
 
-    btnAddons = new JButton("Adicionar amostras b\u00E1sicas\r\n");
+    btnAddons = new JButton("Adicionar amostras básicas\r\n");
 
     setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Ajuda", TitledBorder.CENTER, TitledBorder.TOP,
         null, new Color(192, 192, 192)));
@@ -33,7 +33,7 @@ public class GUIHelpSection extends GUISection<GUISections> {
 
     setLayout(null);
 
-    btnAddons.setToolTipText("Adiciona uma lista de produtos aleat\u00F3rios como amostra.");
+    btnAddons.setToolTipText("Adiciona uma lista de produtos aleatórios como amostra.");
     btnAddons.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

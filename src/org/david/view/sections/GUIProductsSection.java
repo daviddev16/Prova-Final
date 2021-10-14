@@ -13,13 +13,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import org.david.controller.RepositoryManager;
-import org.david.miscs.Section;
 import org.david.model.Product;
-import org.david.model.impl.GUISections;
 import org.david.model.impl.SalableProduct;
-import org.david.view.GUIProduct;
-import org.david.view.GUIProductList;
-import org.david.view.TipHandler;
+import org.david.view.GUISections;
+import org.david.view.components.ProductList;
+import org.david.view.dialogs.ProductBuilderDialog;
+import org.david.view.miscs.Section;
+import org.david.view.miscs.TipHandler;
 
 @Section(title = "Produtos")
 public class GUIProductsSection extends GUISection<GUISections> {
@@ -31,7 +31,7 @@ public class GUIProductsSection extends GUISection<GUISections> {
   private JButton btnAdicionarProduto;
 
   private JLabel lblProdutosInfo;
-  private GUIProductList listProdutos;
+  private ProductList listProdutos;
   private JScrollPane scrollPaneProdutos;
 
   public GUIProductsSection(RepositoryManager repositoryManager, GUISections root) {
@@ -46,10 +46,10 @@ public class GUIProductsSection extends GUISection<GUISections> {
     btnAdicionarProduto = new JButton("Adicionar");
 
     lblProdutosInfo = new JLabel("...");
-    listProdutos = new GUIProductList(getRepositoryManager(), false);
+    listProdutos = new ProductList(getRepositoryManager(), false);
 
     btnAdicionarProduto.addActionListener((event) -> {
-      SalableProduct newProduct = GUIProduct.create(getRepositoryManager());
+      SalableProduct newProduct = ProductBuilderDialog.create(getRepositoryManager());
       if (newProduct != null) {
         addProduct((Product) newProduct);
       }
@@ -139,7 +139,7 @@ public class GUIProductsSection extends GUISection<GUISections> {
     btnRemoverProduto.addMouseListener(new TipHandler(tipLabel, "Remover um produto da lista."));
     btnEditarProduto.addMouseListener(new TipHandler(tipLabel, "Editar o produto selecionado."));
     listProdutos.addMouseListener(new TipHandler(tipLabel, "Lista de produtos cadastrados."));
-    lblProdutosInfo.addMouseListener(new TipHandler(tipLabel, "InformaÁıes de estoque e preÁos."));
+    lblProdutosInfo.addMouseListener(new TipHandler(tipLabel, "Informa√ß√µes de estoque e pre√ßos."));
   }
 
   public void addProduct(Product product) {
@@ -158,9 +158,9 @@ public class GUIProductsSection extends GUISection<GUISections> {
     StringBuffer buffer = new StringBuffer();
 
     buffer.append("<html>");
-    buffer.append("PreÁo mÌnimo: <br>R$ " + getRepositoryManager().getProductRepository().getMinimumPrice())
+    buffer.append("Pre√ßo m√≠nimo: <br>R$ " + getRepositoryManager().getProductRepository().getMinimumPrice())
         .append("<br><br>");
-    buffer.append("PreÁo m·ximo: <br>R$ " + getRepositoryManager().getProductRepository().getMaximumPrice())
+    buffer.append("Pre√ßo m√°ximo: <br>R$ " + getRepositoryManager().getProductRepository().getMaximumPrice())
         .append("<br><br>");
     buffer.append(
         "Total em estoque: <br>" + getRepositoryManager().getProductRepository().getTotalStockAmount() + " Produtos")
@@ -172,7 +172,7 @@ public class GUIProductsSection extends GUISection<GUISections> {
     if (selectedId != null) {
       SalableProduct product = getRepositoryManager().getProductRepository().getElement(selectedId);
       buffer.append("Nome: <br>" + product.getName()).append("<br><br>");
-      buffer.append("PreÁo: <br>R$ " + (product.getPrice() + "").replace(".", ",")).append("<br><br>");
+      buffer.append("Pre√ßo: <br>R$ " + (product.getPrice() + "").replace(".", ",")).append("<br><br>");
       buffer.append("Qtd. em estoque: <br>" + product.getStock().getQuantityInStock()).append("<br><br>");
     }
 
@@ -183,26 +183,26 @@ public class GUIProductsSection extends GUISection<GUISections> {
   }
 
   public void addSamples() {
-    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "MaÁ„", 3.5, 50));
+    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Ma√ß√£", 3.5, 50));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Desinfetante", 7.5, 125));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Refrigerante 2L", 9.25, 25));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Cenoura", 2.5, 145));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Biscoito 200g", 5.53, 102));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Arroz 1kg", 10.52, 55));
-    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "CafÈ 500g", 2.5, 145));
+    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Caf√© 500g", 2.5, 145));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Sabonete", 5.99, 100));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Sal 400g", 2.5, 175));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Manteiga 250g", 10.5, 134));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Faca", 5.5, 32));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Iogurte 1L", 8.5, 64));
-    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Televis„o X", 549.99, 20));
-    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Televis„o Z", 899.99, 10));
+    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Televis√£o X", 549.99, 20));
+    addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Televis√£o Z", 899.99, 10));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Smartphone Y", 2099.99, 39));
     addProduct(Product.create(getRepositoryManager().nextProductUniqueID(), "Vassoura", 5.99, 34));
   }
 
   public void editProduct(Product product) {
-    GUIProduct.edit(getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()),
+    ProductBuilderDialog.edit(getRepositoryManager().getProductRepository().getElement(listProdutos.getSelectedValue()),
         getRepositoryManager());
     update();
   }
