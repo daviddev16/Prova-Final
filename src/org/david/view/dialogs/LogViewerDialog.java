@@ -1,22 +1,20 @@
 package org.david.view.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.david.controller.RepositoryManager;
 import org.david.view.miscs.Utils;
-
-import java.awt.Font;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import java.awt.ComponentOrientation;
 
 public class LogViewerDialog extends JDialog {
 
@@ -28,9 +26,9 @@ public class LogViewerDialog extends JDialog {
     setType(Type.UTILITY);
     setResizable(false);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    setMinimumSize(new Dimension(560, 568));
+    setBounds(100, 100, 560, 568);
     setLocationRelativeTo(null);
-    setMinimumSize(new Dimension(345, 447));
-    setBounds(100, 100, 498, 568);
     getContentPane().setLayout(new BorderLayout(0, 0));
 
     JScrollPane scrollPane = new JScrollPane();
@@ -66,9 +64,11 @@ public class LogViewerDialog extends JDialog {
     manager.getProductRepository().stream().forEach(product -> {
 
       buffer.append(String.format("| %-5s | %-22s | %-15s | %-16s |%n", product.getUniqueId(), product.getName(),
-          product.getPrice(), product.getStock().getQuantityInStock()));
+          Utils.toBRL(product.getPrice()), product.getStock().getQuantityInStock()));
 
     });
+    buffer.append(String.format("+-------+------------------------+-----------------+------------------+%n"));
+    buffer.append('\n');
     buffer.append(String.format("+---------------------------------------------------------------------+%n"));
     buffer.append(String.format("| 2# Vendas >>                                                        |%n"));
     buffer.append(String.format("+-------+------------------------+--------------+---------------------+%n"));
@@ -76,11 +76,25 @@ public class LogViewerDialog extends JDialog {
     buffer.append(String.format("+-------+------------------------+--------------+---------------------+%n"));
     manager.getSaleRepository().stream().forEach(sale -> {
 
-      buffer.append(String.format("| %-5s | %-22s | %-12s | %-19s |%n", sale.getUniqueId(), sale.getSaleTotalPrice(),
+      buffer.append(String.format("| %-5s | %-22s | %-12s | %-19s |%n", sale.getUniqueId(), Utils.toBRL(sale.getSaleTotalPrice()),
           sale.getDate().format(Utils.TIME_FORMAT), sale.getSaleProducts().size()));
 
     });
     buffer.append(String.format("+-------+------------------------+--------------+---------------------+%n"));
+    buffer.append('\n');
+    buffer.append(String.format("+---------------------------------------------------------------------+%n"));
+    buffer.append(String.format("| 3# Mudanças do Estoque >>                                           |%n"));
+    buffer.append(String.format("+---------------------+-------------------------+---------------------+%n"));
+    buffer.append(String.format("| Quantidade anterior | Quantidade Atualizada   | -                   |%n"));
+    buffer.append(String.format("+---------------------+-------------------------+---------------------+%n"));
+
+    manager.getProductRepository().getStockListener().stream().forEach(values -> {
+      buffer.append(String.format("| %-19s | %-23s | %-18s  |%n", values.getOldValue(), values.getNewValue(), "-"));
+    });
+    
+    buffer.append(String.format("+---------------------+-------------------------+---------------------+%n"));
+    buffer.append('\n');
+    buffer.append("Fim do relatório.");
     return buffer.toString();
   }
 

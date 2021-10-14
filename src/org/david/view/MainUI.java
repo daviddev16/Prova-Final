@@ -28,7 +28,7 @@ public class MainUI extends JFrame implements GUISections {
   private final GUISection<GUISections> helpSection;
   private final GUISection<GUISections> salesSection;
   private final GUISection<GUISections> productsSection;
-  
+
   private final JPanel contentPane = new JPanel(true);
 
   public MainUI() {
@@ -44,7 +44,7 @@ public class MainUI extends JFrame implements GUISections {
     helpSection = new GUIHelpSection(repositoryManager, this);
     salesSection = new GUISalesSection(repositoryManager, this);
     productsSection = new GUIProductsSection(repositoryManager, this);
-    
+
     salesSection.handleTip(tip);
     helpSection.handleTip(tip);
     productsSection.handleTip(tip);

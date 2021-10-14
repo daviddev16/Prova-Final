@@ -83,7 +83,7 @@ public class SaleBuilderDialog extends JDialog {
           SalableProduct product = repositoryManager.getProductRepository().getElement(listProdutos.getSelectedValue());
 
           String amountStringValue = JOptionPane.showInputDialog(null,
-              "Digite a quantidade para venda: (Dispon�vel " + product.getStock().getQuantityInStock() + ")",
+              "Digite a quantidade para venda: (Disponível " + product.getStock().getQuantityInStock() + ")",
               Integer.valueOf(0));
           try {
 
@@ -141,10 +141,14 @@ public class SaleBuilderDialog extends JDialog {
           return;
         }
 
+        final int oldStockValue = repositoryManager.getProductRepository().getTotalStockAmount();
         sale.setDate(tfData.getValue());
         sale.getSaleProducts().forEach(product -> {
           product.getProduct().getStock().remove(product.getAmount());
         });
+
+        repositoryManager.getProductRepository().getStockListener().registerStockChange(oldStockValue,
+            repositoryManager.getProductRepository().getTotalStockAmount());
 
         sections.getProductsSection().update();
         dispose();

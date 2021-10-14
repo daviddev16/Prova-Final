@@ -1,23 +1,21 @@
 package org.david.view.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.david.model.Sale;
 import org.david.model.Sale.SaleProduct;
 import org.david.view.miscs.Utils;
-
-import java.awt.Font;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import java.awt.ComponentOrientation;
 
 public class SaleViewerDialog extends JDialog {
 

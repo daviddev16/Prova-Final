@@ -1,8 +1,6 @@
 package org.david.view.sections;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -27,6 +25,7 @@ import org.david.model.Sale;
 import org.david.view.GUISections;
 import org.david.view.components.DateField;
 import org.david.view.components.SaleList;
+import org.david.view.dialogs.LogViewerDialog;
 import org.david.view.dialogs.SaleBuilderDialog;
 import org.david.view.dialogs.SaleViewerDialog;
 import org.david.view.miscs.Section;
@@ -119,17 +118,14 @@ public class GUISalesSection extends GUISection<GUISections> {
         });
 
         ((DefaultListModel<Integer>) listVendas.getModel())
-            .add(((DefaultListModel<Integer>) listVendas.getModel()).getSize(), (int) -to.toEpochDay());
+        .add(((DefaultListModel<Integer>) listVendas.getModel()).getSize(), (int) -to.toEpochDay());
       }
 
     });
 
-    btnExcluir.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent arg0) {
-        if (listVendas.getSelectedValue() != null) {
-          removeSale(repositoryManager.getSaleRepository().getElement(listVendas.getSelectedValue()));
-        }
+    btnExcluir.addActionListener((event) -> {
+      if (listVendas.getSelectedValue() != null) {
+        removeSale(repositoryManager.getSaleRepository().getElement(listVendas.getSelectedValue()));
       }
     });
 
@@ -145,10 +141,14 @@ public class GUISalesSection extends GUISection<GUISections> {
     btnVender.setOpaque(false);
     btnVender.setFocusPainted(false);
 
+    btnRegistro.addActionListener((event) -> {
+      LogViewerDialog.viewLogInformations(getRepositoryManager());
+    });
+
     btnAnalisar.addActionListener((event) -> {
       if (listVendas.getSelectedValue() != null) {
         SaleViewerDialog
-            .viewSaleInformations(repositoryManager.getSaleRepository().getElement(listVendas.getSelectedValue()));
+        .viewSaleInformations(repositoryManager.getSaleRepository().getElement(listVendas.getSelectedValue()));
       }
     });
 
@@ -183,18 +183,18 @@ public class GUISalesSection extends GUISection<GUISections> {
 
     groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
         groupLayout.createSequentialGroup().addGap(5)
-            .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                .addComponent(scrollPaneVendas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                .addComponent(btnRegistro, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-                .addGroup(Alignment.LEADING,
-                    groupLayout.createSequentialGroup()
-                        .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                            .addComponent(btnAnalisar, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVender)
-                            .addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(panelFiltro, GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)))
-            .addGap(5)));
+        .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+            .addComponent(scrollPaneVendas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+            .addComponent(btnRegistro, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+            .addGroup(Alignment.LEADING,
+                groupLayout.createSequentialGroup()
+                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(btnAnalisar, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVender)
+                    .addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panelFiltro, GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)))
+        .addGap(5)));
     groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         .addGroup(groupLayout.createSequentialGroup()
             .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -227,12 +227,18 @@ public class GUISalesSection extends GUISection<GUISections> {
   }
 
   @Override
-  public void update() {
-  }
+  public void update() {}
 
   @Override
   public void handleTip(JLabel tipLabel) {
     btnVender.addMouseListener(new TipHandler(tipLabel, "Iniciar um processo de venda."));
+    btnExcluir.addMouseListener(new TipHandler(tipLabel, "Excluir venda selecionada."));
+    btnFiltrar.addMouseListener(new TipHandler(tipLabel, "Filtrar vendas entre duas datas."));
+    btnRegistro.addMouseListener(new TipHandler(tipLabel, "Relatório geral."));
+    btnAnalisar.addMouseListener(new TipHandler(tipLabel, "Ver o registro da venda selecionada."));
+    dfDe.addMouseListener(new TipHandler(tipLabel, "Data incial para filtragem."));
+    dfPara.addMouseListener(new TipHandler(tipLabel, "Data final para filtragem."));
+    listVendas.addMouseListener(new TipHandler(tipLabel, "Lista de vendas."));
   }
 
   public void addSale(Sale sale) {
